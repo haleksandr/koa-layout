@@ -1,0 +1,34 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #f9fafc;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+@import './_header1';
+@import './_header2';
+@import './header4';
+@import './nav1.scss';
+@import '_sign-in-1-1';
+// @import './_password-recovery';
+@import './password-recovery-2.scss';
+// @import './password-recovery-3';
+@import './sign-up-1.scss';
+@import './sign-up-2.scss';
+@import './sign-up-3.scss';
+@import './sign-up-4.scss';
+@import './sign-up-5.scss';
+@import './sign-up-6.scss';
+@import './profile-personal.scss';
+@import './profile-account.scss';
+@import './search-results.scss';

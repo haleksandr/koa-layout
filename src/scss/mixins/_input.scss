@@ -1,0 +1,11 @@
+@mixin input {
+  width: 400px;
+  height: 40px;
+  padding: 10px;
+  background: #fcfcfc;
+  border: 2px solid #f2f2f2;
+  &:focus {
+    outline: none;
+    border-left: 2px solid #2a74db;
+  }
+}

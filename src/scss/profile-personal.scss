@@ -1,0 +1,124 @@
+@import './mixins/_input';
+@import './mixins/_dropdown';
+
+.section {
+  width: 1200px;
+  height: 600px;
+  margin: 50px auto 0 auto;
+  background-color: #fff;
+}
+
+.section__personal {
+  display: flex;
+  padding-left: 60px;
+  padding-top: 40px;
+}
+
+.personal__account-personal-active {
+  border-bottom: 2px solid #2a74db;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  h1 {
+    a {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #01134e;
+    }
+  }
+}
+
+.personal__account-personal {
+  border-bottom: 2px solid #e9e9e9;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  h1 {
+    a {
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #ccd0cd;
+      &:hover {
+        color: #01134e;
+      }
+    }
+  }
+}
+
+.section__change {
+  display: flex;
+  padding-top: 50px;
+}
+
+.section__photo-change {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 60px;
+}
+
+.change-upload {
+  padding-top: 5px;
+  a {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.28px;
+    color: #35373b;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.input-change-el {
+  h2 {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #546087;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+  }
+}
+
+.input-change-el {
+  padding-bottom: 30px;
+  padding-left: 30px;
+  @include dropdown;
+  input {
+    @include input;
+    width: 280px;
+    height: 40px;
+    &:focus {
+      border: 2px solid #f2f2f2;
+    }
+  }
+  select {
+    width: 280px;
+    height: 40px;
+  }
+  .el-select-country-number {
+    width: 80px;
+  }
+  .el-input-country-number {
+    width: 195px;
+  }
+}
+
+.input-change-el-country {
+}

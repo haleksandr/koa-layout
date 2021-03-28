@@ -1,0 +1,35 @@
+.personal__account-personal {
+  &:hover {
+    color: #01134e;
+  }
+}
+
+.personal__account-personal-active {
+  border-bottom: 2px solid #2a74db;
+}
+
+.section__change {
+  padding-left: 30px;
+}
+
+.section__change-button {
+  display: flex;
+  justify-content: center;
+}
+
+.change-username-email-button {
+  a {
+    font-family: 'Roboto';
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.28px;
+    color: #01134e;
+    padding-right: 5px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  img {
+    // align-items: center;
+  }
+}

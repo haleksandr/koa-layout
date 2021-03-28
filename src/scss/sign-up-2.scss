@@ -1,0 +1,37 @@
+@import './mixins/_checkbox.scss';
+
+.form {
+  height: 500px;
+}
+
+.content__input::placeholder {
+  color: #8790a7;
+  font-family: 'Roboto';
+}
+
+.content__agree {
+  @include checkbox;
+  .checkbox-wrapper {
+    margin-bottom: 10px;
+  }
+  p {
+    display: flex;
+    // align-items: center;
+    padding-left: 35px;
+    padding-top: 3px;
+    width: 350px;
+    font-family: 'Exo 2';
+    font-weight: 300;
+  }
+  a {
+    color: #002396;
+    padding-left: 5px;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.content__captcha {
+  margin-bottom: 10px;
+}

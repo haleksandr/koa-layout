@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.header__logo {
+  img {
+    width: 140px;
+  }
+}
+
+.header__back-sign-up {
+  p {
+    font-family: 'Roboto';
+    font-weight: 400;
+  }
+  a {
+    color: #2a74db;
+    font-weight: 700;
+    font-family: 'Roboto';
+  }
+  a:hover {
+    text-decoration: underline;
+    color: #0e448e;
+  }
+}
+
+@media screen and (max-width: 600px) {
+}

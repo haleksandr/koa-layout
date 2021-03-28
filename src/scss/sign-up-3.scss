@@ -1,0 +1,33 @@
+.content__input {
+  &:first-child {
+    margin-bottom: 7px;
+  }
+}
+
+.content-inputs-block-password-check {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.password-check {
+  width: 130px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 2px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+.check-bad {
+  background-color: #ff6359;
+}
+
+.check-weak {
+  background-color: #ebeff3;
+}
+
+.check-good {
+  background-color: #ebeff3;
+}

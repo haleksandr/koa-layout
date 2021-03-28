@@ -1,0 +1,73 @@
+{% extends '_base.html' %} {% block content %} {% include '_header4.html' %}
+<main class="main">
+  {% include 'nav-1.html' %}
+  <section class="section">
+    <article class="section__personal">
+      <div class="personal__account-personal-active">
+        <h1><a href="#">personal information</a></h1>
+      </div>
+      <div class="personal__account-personal">
+        <h1><a href="./profile-account">account information</a></h1>
+      </div>
+    </article>
+    <section class="section__change">
+      <article class="section__photo-change">
+        <div class="change-photo">
+          <img src="./images/Photo-change-photo.svg" alt="Change photo" />
+        </div>
+        <div class="change-upload">
+          <img src="./images/Icon-pencil.svg" alt="" />
+          <a href="#">Change photo</a>
+        </div>
+      </article>
+      <article class="section__input-change">
+        <div class="input-change-el">
+          <h2>first name</h2>
+          <input type="text" value="Faruh" placeholder="Your name" />
+        </div>
+        <div class="input-change-el">
+          <h2>title</h2>
+          <label for="">
+            <select name="" id="">
+              <option value="Mr">Mr</option>
+              <option value="Mrs">Mrs</option>
+            </select>
+          </label>
+        </div>
+        <div class="input-change-el">
+          <h2>country</h2>
+          <label for="">
+            <select class="input-change-el-country" name="" id="">
+              <option value="first"></option>
+            </select>
+          </label>
+        </div>
+      </article>
+      <article class="section__input-change">
+        <div class="input-change-el">
+          <h2>last name</h2>
+          <input type="text" value="Bernandez" placeholder="Your surname" />
+        </div>
+        <div class="input-change-el">
+          <h2>mobile phone</h2>
+          <label for="">
+            <select
+              class="el-select-country-number input-change-el-flag"
+              name=""
+              id=""
+            >
+              <option value="first"></option>
+              <option value="second"></option>
+            </select>
+          </label>
+          <input class="el-input-country-number" type="text" value="+65" />
+        </div>
+        <div class="input-change-el">
+          <h2>company</h2>
+          <input type="text" />
+        </div>
+      </article>
+    </section>
+  </section>
+</main>
+{% endblock %}

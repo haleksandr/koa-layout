@@ -1,0 +1,59 @@
+@import './mixins/button';
+@import './mixins/_input';
+@import './mixins/_title';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #fff;
+  background: #fff;
+  box-shadow: 0px 5px 40px rgba(0, 45, 113, 0.06);
+  width: 630px;
+  height: 420px;
+  margin: 0 auto;
+  margin-top: 160px;
+}
+
+.form__content {
+  width: 400px;
+  margin: 0 auto;
+  border: 1px solid #fff;
+  // margin-top: 50px;
+  // margin: 70px 120px 70px 120px;
+}
+
+.content__title {
+  @include title;
+  padding-bottom: 50px;
+}
+
+.content__inputs-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.content__input {
+  @include input;
+  &:first-child {
+    margin-bottom: 25px;
+  }
+}
+
+.content__forgot-password {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 15px;
+  a {
+    color: #222428;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+.btn {
+  @include button;
+  float: right;
+  margin-top: 15px;
+}

@@ -1,0 +1,63 @@
+@mixin dropdown {
+  // body {
+  //   min-height: 30px;
+  //   display: grid;
+  //   place-items: center;
+  // }
+
+  select {
+    font-size: 14px;
+    padding: 5px 5px 5px 10px;
+    width: 250px;
+    // height: 100px;
+    color: #35373b;
+    appearance: none;
+    border: 2px solid #f2f2f2;
+    background-color: #fcfcfc;
+    // background: url('./../images/icon-header-arrow-down.svg') no-repeat left;
+    // background-position-x: calc(100% - 8px);
+    background-size: auto 25%;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .input-change-el-country {
+    background: url('./../images/Icon-location.svg') no-repeat left;
+    background-position-x: calc(100% - 255px);
+  }
+
+  .input-change-el-flag {
+    background: url('./../images/Icon-flag.svg') no-repeat left;
+    background-position-x: calc(100% - 35px);
+  }
+
+  // .custom-select {
+  //   position: relative;
+  // }
+
+  // .custom-arrow {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   display: block;
+  //   background: gray;
+  //   background: url('./../images/icon-header-arrow-down.svg') no-repeat 15px 25px;
+  //   background-size: auto 20%;
+  //   height: 100%;
+  //   // width: 3em;
+  //   pointer-events: none;
+  // }
+
+  // .custom-arrow::before,
+  // .custom-arrow::after {
+  //   content: '';
+  //   position: absolute;
+  //   width: 0;
+  //   height: 0;
+  // }
+
+  // .custom-arrow::before {
+  //   background: url('./../images/icon-header-arrow-down.svg') no-repeat right;
+  // }
+}

@@ -1,0 +1,35 @@
+{% extends '_base.html' %} {% block content %} {% include '_header4.html' %}
+<main class="main">
+  {% include 'nav-1.html' %}
+  <section class="section">
+    <article class="section__personal">
+      <div class="personal__account-personal">
+        <h1><a href="./profile-personal">personal information</a></h1>
+      </div>
+      <div class="personal__account-personal-active">
+        <h1><a href="./profile-account">account information</a></h1>
+      </div>
+    </article>
+    <section class="section__change">
+      <div class="input-change-el">
+        <h2>username</h2>
+        <input type="text" value="sarahbarnes" placeholder="Your username" />
+      </div>
+      <div class="input-change-el">
+        <h2>email</h2>
+        <input
+          type="text"
+          value="sarahbbb@gmail.com"
+          placeholder="Your email"
+        />
+      </div>
+    </section>
+    <section class="section__change-button">
+      <div class="change-username-email-button">
+        <a href="#">change password</a>
+        <img src="./images/Icon-arrow-right-blue.svg" alt="" />
+      </div>
+    </section>
+  </section>
+</main>
+{% endblock %}

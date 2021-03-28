@@ -1,0 +1,17 @@
+{% extends '_base.html' %} {% block content %} {% include '_header1.html' %}
+<main class="main">
+  <form class="form">
+    <div class="form__content">
+      <h1 class="content__title">Sign in</h1>
+      <div class="content__inputs-block">
+        <input class="content__input" type="email" placeholder="Email" />
+        <input class="content__input" type="password" placeholder="Password" />
+      </div>
+      <div class="content__forgot-password">
+        <a href="#">Forgot password?</a>
+      </div>
+      <button class="btn">Sign in</button>
+    </div>
+  </form>
+</main>
+{% endblock %}

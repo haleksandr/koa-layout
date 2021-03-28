@@ -8,8 +8,9 @@
     "lint:fix": "eslint 'src/**/*.js' --fix",
     "eslint:init": "eslint --init",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon ./app.js",
-    "start": "node ./app.js"
+    "serve": "nodemon ./app.js --config nodemon.json",
+    "start": "node ./app.js",
+    "compileSass": "node-sass -o src/public/stylesheets src/scss/main.scss"
   },
   "author": "Aleksandr Holoven",
   "license": "ISC",
@@ -19,10 +20,13 @@
     "eslint-plugin-import": "^2.22.1"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "fast-glob": "^3.2.5",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
     "koa-static": "^5.0.0",
     "koa-views": "^7.0.1",
+    "node-sass": "^5.0.0",
     "nodemon": "^2.0.7",
     "nunjucks": "^3.2.3"
   }

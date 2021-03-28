@@ -1,0 +1,26 @@
+{% extends '_base.html' %} {% block content %} {% include '_header3.html' %}
+<main class="main">
+  <form class="form">
+    <div class="form__content">
+      <h1 class="content__title">Sign up</h1>
+      <div class="content__inputs-block">
+        <div class="inputs-block-name">
+          <input
+            class="content__input-name"
+            type="text"
+            placeholder="First name"
+          />
+          <input
+            class="content__input-name"
+            type="text"
+            placeholder="Last name"
+          />
+        </div>
+        <input class="content__input" type="email" placeholder="Username" />
+        <input class="content__input" type="password" placeholder="Password" />
+      </div>
+      <button class="btn">Sign in</button>
+    </div>
+  </form>
+</main>
+{% endblock %}
