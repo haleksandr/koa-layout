@@ -1,9 +1,37 @@
+const { isError } = require('joi');
+const db = require('./db/db');
+const validator = require('./validator');
+
+async function createUser(ctx) {
+  const { body } = ctx.request;
+  await validator.schema.validateAsync(body);
+
+  const userResponse = await db.query(
+    `INSERT INTO "user" (fname, lname) VALUES ('${body.fname}', '${body.lname}') RETURNING *`
+  );
+
+  const user = userResponse.rows[0];
+  ctx.status = 201;
+  ctx.body = {
+    id: user.id,
+    firstName: user.fname,
+    lastName: user.lname,
+  };
+
+  console.log(ctx.body);
+}
+
 async function home(ctx) {
   await ctx.render('home');
 }
 
 async function signin11(ctx) {
   await ctx.render('sign-in-1-1', { title: 'Sign in' });
+  // console.log(ctx.request.query);
+  // const { body } = ctx.request;
+  // console.log('tik');
+  // console.log(ctx.request);
+  console.log(db);
 }
 
 async function passwordrecovery(ctx) {
@@ -43,7 +71,12 @@ async function signup6(ctx) {
 }
 
 async function profilepersonal(ctx) {
-  await ctx.render('profile-personal', { title: 'Password recovery' });
+  const users = (await db.query('SELECT * FROM "user"')).rows;
+  console.log(users);
+  await ctx.render('profile-personal', {
+    title: 'Password recovery',
+    name: 'string',
+  });
 }
 
 async function profileaccount(ctx) {
@@ -79,4 +112,5 @@ module.exports = {
   searchresults,
   searchresultsmap,
   adminmanagefixers,
+  createUser,
 };

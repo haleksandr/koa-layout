@@ -20,6 +20,8 @@ router.get('search-results', controllers.searchresults);
 router.get('search-results-map', controllers.searchresultsmap);
 router.get('admin-manage-fixers', controllers.adminmanagefixers);
 
+router.post('user', controllers.createUser);
+
 module.exports = {
   router,
 };
