@@ -163,4 +163,5 @@ module.exports = {
   createUser,
   getUser,
   deleteUser,
+  getUsers,
 };

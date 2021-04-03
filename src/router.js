@@ -22,8 +22,9 @@ router.get('admin-manage-fixers', controllers.adminmanagefixers);
 
 // router.post('user', controllers.createUser);
 router.post('create-user', controllers.createUser);
-router.get('get-user', controllers.getUser);
+// router.get('get-user', controllers.getUser);
 router.get('get-user/:userId', controllers.getUser);
+router.get('get-users', controllers.getUsers);
 router.delete('delete-user/:userId', controllers.deleteUser);
 
 module.exports = {
