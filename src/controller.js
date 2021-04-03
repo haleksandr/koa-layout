@@ -6,11 +6,11 @@ async function createUser(ctx) {
   const { body } = ctx.request;
   await validator.schema.validateAsync(body);
 
-  const userResponse = await db.query(
+  const createUserResponse = await db.query(
     `INSERT INTO "user" (fname, lname) VALUES ('${body.fname}', '${body.lname}') RETURNING *`
   );
 
-  const user = userResponse.rows[0];
+  const user = createUserResponse.rows[0];
   ctx.status = 201;
   ctx.body = {
     id: user.id,
@@ -19,6 +19,14 @@ async function createUser(ctx) {
   };
 
   console.log(ctx.body);
+}
+
+async function getUser(ctx) {
+  const { body } = ctx.request;
+  const { userId } = ctx.request.params;
+  const getUserResponse = await db.query(
+    `SELECT * FROM "user" WHERE id = '${userId}'`
+  );
 }
 
 async function home(ctx) {
@@ -113,4 +121,5 @@ module.exports = {
   searchresultsmap,
   adminmanagefixers,
   createUser,
+  getUser,
 };
