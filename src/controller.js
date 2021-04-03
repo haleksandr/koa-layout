@@ -27,6 +27,15 @@ async function getUser(ctx) {
   const getUserResponse = await db.query(
     `SELECT * FROM "user" WHERE id = '${userId}'`
   );
+
+  const user = { ...getUserResponse.rows[0] };
+
+  ctx.status = 302;
+  ctx.body = {
+    id: user.id,
+    fname: user.fname,
+    lname: user.lname,
+  };
 }
 
 async function home(ctx) {
