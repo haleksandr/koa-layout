@@ -18,7 +18,7 @@ async function createUser(ctx) {
     lastName: user.lname,
   };
 
-  console.log(ctx.body);
+  // console.log(ctx.body);
 }
 
 async function getUser(ctx) {
@@ -36,6 +36,7 @@ async function getUser(ctx) {
     fname: user.fname,
     lname: user.lname,
   };
+  console.log(ctx.body);
 }
 
 async function home(ctx) {
