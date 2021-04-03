@@ -39,6 +39,20 @@ async function getUser(ctx) {
   console.log(ctx.body);
 }
 
+async function getUsers(ctx) {
+  const { body } = ctx.request;
+  const getUserResponse = await db.query(`SELECT * FROM "user"`);
+
+  const user = { ...getUserResponse.rows };
+
+  ctx.status = 302;
+  ctx.body = {
+    id: user.id,
+    fname: user.fname,
+    lname: user.lname,
+  };
+}
+
 async function deleteUser(ctx) {
   const { body } = ctx.request;
   const { userId } = ctx.request.params;
