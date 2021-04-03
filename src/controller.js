@@ -39,6 +39,22 @@ async function getUser(ctx) {
   console.log(ctx.body);
 }
 
+async function deleteUser(ctx) {
+  const { body } = ctx.request;
+  const { userId } = ctx.request.params;
+  const deleteUserResponse = await db.query(
+    `DELETE FROM "user" WHERE id = ${userId} RETURNING *`
+  );
+
+  const user = { ...deleteUserResponse.rows[0] };
+
+  ctx.status = 204;
+  ctx.body = {
+    message: 'DELETE',
+    fname: user.fname,
+  };
+}
+
 async function home(ctx) {
   await ctx.render('home');
 }
@@ -132,4 +148,5 @@ module.exports = {
   adminmanagefixers,
   createUser,
   getUser,
+  deleteUser,
 };
