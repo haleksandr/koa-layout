@@ -20,11 +20,11 @@ router.get('search-results', controllers.searchresults);
 router.get('search-results-map', controllers.searchresultsmap);
 router.get('admin-manage-fixers', controllers.adminmanagefixers);
 
-// router.post('user', controllers.createUser);
+// CRUD
 router.post('create-user', controllers.createUser);
-// router.get('get-user', controllers.getUser);
 router.get('get-user/:userId', controllers.getUser);
 router.get('get-users', controllers.getUsers);
+router.put('update-user/:userId', controllers.updateUser);
 router.delete('delete-user/:userId', controllers.deleteUser);
 
 module.exports = {

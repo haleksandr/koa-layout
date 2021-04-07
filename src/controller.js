@@ -18,7 +18,7 @@ async function createUser(ctx) {
     lastName: user.lname,
   };
 
-  // console.log(ctx.body);
+  console.log(ctx.body);
 }
 
 async function getUser(ctx) {
@@ -51,6 +51,8 @@ async function getUsers(ctx) {
     fname: user.fname,
     lname: user.lname,
   };
+
+  console.log(user);
 }
 
 async function deleteUser(ctx) {
@@ -66,6 +68,24 @@ async function deleteUser(ctx) {
   ctx.body = {
     message: 'DELETE',
     fname: user.fname,
+  };
+}
+
+async function updateUser(ctx) {
+  const { id, fname, lname } = ctx.request.body;
+  const { userId } = ctx.request.params;
+
+  const updateUserResponse = await db.query(
+    `UPDATE "user" SET fname = '${fname}', lname = '${lname}' WHERE id = '${userId}' RETURNING *`
+  );
+
+  const user = { ...updateUserResponse.rows };
+
+  ctx.status = 202;
+  ctx.body = {
+    id: user.id,
+    fname: user.fname,
+    lname: user.lname,
   };
 }
 
@@ -164,4 +184,5 @@ module.exports = {
   getUser,
   deleteUser,
   getUsers,
+  updateUser,
 };
