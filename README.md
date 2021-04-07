@@ -1,4 +1,10 @@
-## layout(not finished)
+#### Powered by koa. Use elephantsql. Deploy on heroku.
 
-[heroku link](https://koa-layout.herokuapp.com/home)
-- /home - list of all pages
+https://koa-layout.herokuapp.com/home - list all components
+
+```sh
+router.post('create-user', controllers.createUser); --- fname, lname
+router.get('get-user/:userId', controllers.getUser);
+router.put('update-user/:userId', controllers.updateUser);
+router.delete('delete-user/:userId', controllers.deleteUser);
+```
