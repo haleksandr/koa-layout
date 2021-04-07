@@ -1,4 +1,4 @@
-#### Powered by koa. Use elephantsql. Deploy on heroku.
+### Powered by koa. Use elephantsql. Deploy on heroku.
 
 https://koa-layout.herokuapp.com/home - list of all components
 
