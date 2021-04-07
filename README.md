@@ -14,5 +14,5 @@ DB "user" has three columns:
 
 '/update-user/:userId' - this route changes fname(firstName) and lname(lastName). (/:userId(number) - user id can be found when creating via postman)
 
-'/delete-user/:userId', controllers.deleteUser); - this route deletes user(/:userId - user id, can be found when creating via postman)
+'/delete-user/:userId' - this route deletes user(/:userId - user id, can be found when creating via postman)
 ```
