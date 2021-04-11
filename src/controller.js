@@ -23,9 +23,9 @@ async function createUser(ctx) {
   };
 
   // await db.mset(createUserResponse.rows[0].id, JSON.stringify(body));
-  await ctx.redis.set(user.id, JSON.stringify(user));
-  const result = await ctx.redis.get(JSON.parse(user.id));
-  console.log(result);
+  // await ctx.redis.set(user.id, JSON.stringify(user));
+  // const result = await ctx.redis.get(JSON.parse(user.id));
+  // console.log(result);
 
   console.log(ctx.body);
 }
