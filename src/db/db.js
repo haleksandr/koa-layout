@@ -23,7 +23,7 @@ class Database {
       host: process.env.HOST_DB,
       database: process.env.DB_DB,
       password: process.env.PASSWORD_DB,
-      port: 5432,
+      port: process.env.PORT_DB,
       // redislabs
       // user: 'users',
       // host: 'redis-17506.c263.us-east-1-2.ec2.cloud.redislabs.com',

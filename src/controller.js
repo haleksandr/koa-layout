@@ -28,6 +28,7 @@ async function createUser(ctx) {
   // console.log(result);
 
   console.log(ctx.body);
+  console.log(process.env.USERNAME_DB);
 }
 
 async function getUser(ctx) {
