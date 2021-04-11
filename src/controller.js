@@ -1,4 +1,5 @@
 const { isError } = require('joi');
+const Redis = require('ioredis');
 const db = require('./db/db');
 const validator = require('./validator');
 
@@ -7,16 +8,24 @@ async function createUser(ctx) {
   await validator.schema.validateAsync(body);
 
   const createUserResponse = await db.query(
-    `INSERT INTO "user" (fname, lname) VALUES ('${body.fname}', '${body.lname}') RETURNING *`
+    `INSERT INTO "user" (fname, lname, uname, email) VALUES ('${body.fname}', '${body.lname}', '${body.uname}', '${body.email}') RETURNING *`
   );
 
   const user = createUserResponse.rows[0];
-  ctx.status = 201;
+
+  ctx.status = 200;
   ctx.body = {
     id: user.id,
-    firstName: user.fname,
-    lastName: user.lname,
+    fname: user.fname,
+    lname: user.lname,
+    uname: user.uname,
+    email: user.email,
   };
+
+  // await db.mset(createUserResponse.rows[0].id, JSON.stringify(body));
+  await ctx.redis.set(user.id, JSON.stringify(user));
+  const result = await ctx.redis.get(JSON.parse(user.id));
+  console.log(result);
 
   console.log(ctx.body);
 }
@@ -35,6 +44,8 @@ async function getUser(ctx) {
     id: user.id,
     fname: user.fname,
     lname: user.lname,
+    uname: user.uname,
+    email: user.email,
   };
   console.log(ctx.body);
 }

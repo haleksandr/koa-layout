@@ -3,21 +3,30 @@ const { Pool } = require('pg');
 class Database {
   constructor() {
     this.config = {
+      // localhost
       // user: 'testuser',
       // host: 'localhost',
       // database: 'my-fixer-db',
       // password: '12345',
       // port: 5432,
-      user: 'jnbpjekc',
-      host: 'queenie.db.elephantsql.com',
-      database: 'jnbpjekc',
-      password: 'cJmJdbusTqpnHuW5a5KE5gveOTyGmgd3',
-      port: 5432,
-      // user: process.env.USERNAME_DB,
-      // host: process.env.HOST_DB,
-      // database: process.env.DB_DB,
-      // password: process.env.PASSWORD_DB,
-      // port: process.env.PORT_DB,
+      // elephantsql
+      // user: 'jnbpjekc',
+      // host: 'queenie.db.elephantsql.com',
+      // database: 'jnbpjekc',
+      // password: 'cJmJdbusTqpnHuW5a5KE5gveOTyGmgd3',
+      // port: 5432,
+      // .env
+      user: process.env.USERNAME_DB,
+      host: process.env.HOST_DB,
+      database: process.env.DB_DB,
+      password: process.env.PASSWORD_DB,
+      port: process.env.PORT_DB,
+      // redislabs
+      // user: 'users',
+      // host: 'redis-17506.c263.us-east-1-2.ec2.cloud.redislabs.com',
+      // database: 'users',
+      // password: 'KV52k8zmMVEzSda5yPWmMTuqp9wJnIuX',
+      // port: 17506,
     };
 
     this.pool = new Pool(this.config);
