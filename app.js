@@ -6,9 +6,22 @@ const views = require('koa-views');
 const serve = require('koa-static');
 const nunjucks = require('nunjucks');
 const Joi = require('joi');
+const Redis = require('ioredis');
+const cors = require('@koa/cors');
+
 const globalRouter = require('./src/router');
+const passport = require('./src/libs/passport/koaPassport');
+
+passport.initialize();
 
 const app = new Koa();
+app.use(cors());
+
+// const redis = new Redis('redis-17506.c263.us-east-1-2.ec2.cloud.redislabs.com');
+const redis = new Redis('redis://localhost:6379');
+console.log(redis.get('fname'));
+app.context.redis = redis;
+
 app.use(bodyParser());
 app.use(async (ctx, next) => {
   try {
@@ -17,8 +30,12 @@ app.use(async (ctx, next) => {
     if (err.isJoi) {
       ctx.throw(400, err.details[0].message);
     }
+    if (err.isPassport) {
+      ctx.throw(400, err.message);
+    }
     console.log(err);
-    ctx.throw(400, 'Something wrong');
+    // ctx.throw(400, 'Something wrong');
+    ctx.throw(err.status || 500, err.message);
   }
 });
 const router = new Router();

@@ -1,17 +1,9 @@
-const crypto = require('crypto');
 const passport = require('koa-passport');
-const { isError } = require('joi');
 const jwt = require('jwt-simple');
-// const Redis = require('ioredis');
-const db = require('./db/db');
-const validator = require('./validator');
-const { UserDB } = require('./models/user/UserDB');
 
-async function profile(ctx) {
-  ctx.body = {
-    success: true,
-  };
-}
+const validator = require('../validator');
+const db = require('../db/db');
+const UserDB = require('./models/UserDB');
 
 async function createUser(ctx) {
   const { body } = ctx.request;
@@ -30,7 +22,7 @@ async function createUser(ctx) {
   // );
 
   const user = { ...createUserResponse.rows[0] };
-  console.log(await ctx.redis.get('fname'));
+
   // await ctx.redis.set(user.id, JSON.stringify(user));
   // await db.set(user.id, JSON.stringify(user));
 
@@ -43,14 +35,6 @@ async function createUser(ctx) {
     email: user.email,
     // password: user.password,
   };
-
-  // await db.mset(db.query.rows[0].id, JSON.stringify(body));
-  // await ctx.redis.set(user.id, JSON.stringify(user));
-  // const result = await ctx.redis.get(JSON.parse(user.id));
-  // console.log(result);
-
-  // console.log(ctx.body);
-  // console.log(process.env.USERNAME_DB);
 }
 
 async function signIn(ctx) {
@@ -108,7 +92,7 @@ async function getUser(ctx) {
 
   const user = { ...getUserResponse.rows[0] };
 
-  ctx.status = 200;
+  ctx.status = 302;
   ctx.body = {
     id: user.id,
     fname: user.fname,
@@ -122,33 +106,17 @@ async function getUser(ctx) {
 async function getUsers(ctx) {
   const { body } = ctx.request;
   const getUserResponse = await db.query(`SELECT * FROM "user"`);
-  // console.log(getUserResponse);
-  // const user = { ...getUserResponse.rows };
-  const users = getUserResponse.rows;
 
-  ctx.status = 200;
+  const user = { ...getUserResponse.rows };
+
+  ctx.status = 302;
   ctx.body = {
-    users,
+    id: user.id,
+    fname: user.fname,
+    lname: user.lname,
   };
 
-  console.log(users);
-
-  // users.map((el) => {
-  //   // console.log(el);
-  //   // console.log(el.id, el.fname, el.lname);
-  //   ctx.body = {
-  //     id: el.id,
-  //     fname: el.fname,
-  //     lname: el.lname,
-  //   };
-  // });
-  // ctx.body = {
-  //   id: user.id,
-  //   fname: user.fname,
-  //   lname: user.lname,
-  // };
-
-  // console.log(users);
+  console.log(user);
 }
 
 async function deleteUser(ctx) {
@@ -185,103 +153,12 @@ async function updateUser(ctx) {
   };
 }
 
-async function home(ctx) {
-  await ctx.render('home');
-}
-
-async function signin11(ctx) {
-  await ctx.render('sign-in-1-1', { title: 'Sign in' });
-  // console.log(ctx.request.query);
-  // const { body } = ctx.request;
-  // console.log('tik');
-  // console.log(ctx.request);
-  console.log(db);
-}
-
-async function passwordrecovery(ctx) {
-  await ctx.render('password-recovery', { title: 'Password recovery' });
-}
-
-async function passwordrecovery2(ctx) {
-  await ctx.render('password-recovery-2', { title: 'Password recovery' });
-}
-
-async function passwordrecovery3(ctx) {
-  await ctx.render('password-recovery-3', { title: 'Password recovery' });
-}
-
-async function signup1(ctx) {
-  await ctx.render('sign-up-1', { title: 'Password recovery' });
-}
-
-async function signup2(ctx) {
-  await ctx.render('sign-up-2', { title: 'Password recovery' });
-}
-
-async function signup3(ctx) {
-  await ctx.render('sign-up-3', { title: 'Password recovery' });
-}
-
-async function signup4(ctx) {
-  await ctx.render('sign-up-4', { title: 'Password recovery' });
-}
-
-async function signup5(ctx) {
-  await ctx.render('sign-up-5', { title: 'Password recovery' });
-}
-
-async function signup6(ctx) {
-  await ctx.render('sign-up-6', { title: 'Password recovery' });
-}
-
-async function profilepersonal(ctx) {
-  const users = (await db.query('SELECT * FROM "user"')).rows;
-  console.log(users);
-  await ctx.render('profile-personal', {
-    title: 'Password recovery',
-    name: 'string',
-  });
-}
-
-async function profileaccount(ctx) {
-  await ctx.render('profile-account', { title: 'Password recovery' });
-}
-
-async function searchresults(ctx) {
-  await ctx.render('search-results', { title: 'Password recovery' });
-}
-
-async function searchresultsmap(ctx) {
-  await ctx.render('search-results-map', { title: 'Password recovery' });
-}
-
-async function adminmanagefixers(ctx) {
-  await ctx.render('admin-manage-fixers', { title: 'Password recovery' });
-}
-
 module.exports = {
-  home,
-  signin11,
-  passwordrecovery,
-  passwordrecovery2,
-  passwordrecovery3,
-  signup1,
-  signup2,
-  signup3,
-  signup4,
-  signup5,
-  signup6,
-  profilepersonal,
-  profileaccount,
-  searchresults,
-  searchresultsmap,
-  adminmanagefixers,
   createUser,
   signIn,
-  getUser,
-  deleteUser,
-  getUsers,
-  updateUser,
-  profile,
   refresh,
+  getUser,
+  getUsers,
+  deleteUser,
+  updateUser,
 };

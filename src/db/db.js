@@ -30,6 +30,12 @@ class Database {
       // database: 'users',
       // password: 'KV52k8zmMVEzSda5yPWmMTuqp9wJnIuX',
       // port: 17506,
+      // redis local server
+      // user: 'users',
+      // host: '127.0.0.1',
+      // database: 'users',
+      // password: 'KV52k8zmMVEzSda5yPWmMTuqp9wJnIuX',
+      // port: 6379,
     };
 
     this.pool = new Pool(this.config);

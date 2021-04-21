@@ -1,4 +1,6 @@
 const Router = require('koa-router');
+const passport = require('koa-passport');
+
 const controllers = require('./controller');
 
 const router = new Router();
@@ -21,11 +23,18 @@ router.get('search-results-map', controllers.searchresultsmap);
 router.get('admin-manage-fixers', controllers.adminmanagefixers);
 
 // CRUD
-router.post('create-user', controllers.createUser);
-router.get('get-user/:userId', controllers.getUser);
-router.get('get-users', controllers.getUsers);
-router.put('update-user/:userId', controllers.updateUser);
-router.delete('delete-user/:userId', controllers.deleteUser);
+router.post('create-user', controllers.createUser); // create new user
+router.post('sign-in', controllers.signIn); // AZAZAZAZA
+router.get('refresh/token', controllers.refresh); // refresh token
+router.get('get-user/:userId', controllers.getUser); // get one user
+router.get(
+  'profile',
+  passport.authenticate('jwt', { session: false }),
+  controllers.profile
+);
+router.get('get-users', controllers.getUsers); // get all users
+router.put('update-user/:userId', controllers.updateUser); // change user information
+router.delete('delete-user/:userId', controllers.deleteUser); // delete user
 
 module.exports = {
   router,
