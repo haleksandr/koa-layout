@@ -1,23 +1,35 @@
-const Router = require('koa-router');
+const Router = require('koa-joi-router');
 const passport = require('koa-passport');
 
-const controllers = require('./users.controller');
+const { UsersController } = require('./users.controller');
+const UserValidator = require('./users.validator');
 
 const router = new Router();
 
-router.post('create-user', controllers.createUser); // create new user
-router.post('sign-in', controllers.signIn); // sign in
-router.get('refresh/token', controllers.refresh); // refresh token
-// router.get('get-user/:userId', controllers.getUser); // get one user
 router.get(
   'profile',
   passport.authenticate('jwt', { session: false }),
-  controllers.profile
+  UsersController.profile
 );
-router.get('get-users', controllers.getUsers); // get all users
-router.put('update-user/:userId', controllers.updateUser); // change user information
-router.delete('delete-user/:userId', controllers.deleteUser); // delete user
+router.get('refresh/token', UsersController.refresh); // refresh token
+router.post('create-user', UsersController.createUser); // create new user
+// router.post('/', UserValidator.signUp, UsersController.createUser);
+router.post('sign-in', UsersController.signIn); // sign in
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  UsersController.userList
+);
+router.get('users', UsersController.userList);
+// router.put(
+//   '/photo',
+//   passport.authenticate('jwt', { session: false }),
+//   UsersController.updatePhoto
+// );
 
-module.exports = {
-  router,
-};
+// router.get('get-user/:userId', controllers.getUser); // get one user
+// router.get('get-users', userControllers.getUsers); // get all users
+// router.put('update-user/:userId', userControllers.updateUser); // change user information
+// router.delete('delete-user/:userId', userControllers.deleteUser); // delete user
+
+module.exports = router;

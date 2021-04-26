@@ -11,11 +11,12 @@ class UserDB {
 
     if (!userResponse.rowCount) {
       // return { flag: false, message: 'User does not exist' };
-      throw new Error('User does not exist');
+      throw new Error(`User with id: ${id}, does not exist`);
     }
 
     // const user = { ...userResponse.rows[0] };
-    return { ...userResponse.rows[0] };
+    // return { ...userResponse.rows[0] };
+    return new User(userResponse.rows[0]);
   }
 
   static async getUserByEmail(email) {
@@ -29,7 +30,8 @@ class UserDB {
     }
 
     // const user = { ...userResponse.rows[0] };
-    return { ...userResponse.rows[0] };
+    // return { ...userResponse.rows[0] };
+    return new User(userResponse.rows[0]);
   }
 
   static async checkPassword(email, password) {
@@ -38,20 +40,64 @@ class UserDB {
     );
 
     if (!userResponse.rowCount) {
-      return { flag: false, message: `User with ${email} does not exist` };
+      return { message: `User with ${email} does not exist`, flag: false };
     }
 
     const user = { ...userResponse.rows[0] };
 
+    if (
+      crypto
+        .pbkdf2Sync(password, 'salt', 100000, 64, 'sha256')
+        .toString('hex') !== user.password
+    ) {
+      return { message: 'Incorect password', flag: false };
+    }
+
+    return { user: new User(user), flag: true };
+    // const passwordHash = crypto
+    //   .pbkdf2Sync(password, 'salt', 100000, 64, 'sha256')
+    //   .toString('hex');
+
+    // if (user.password === passwordHash) {
+    //   return { user, flag: true };
+    // }
+
+    // return { flag: false, message: 'Incorrect password' };
+  }
+
+  static async createUser(fname, lname, uname, email, password) {
     const passwordHash = crypto
       .pbkdf2Sync(password, 'salt', 100000, 64, 'sha256')
       .toString('hex');
 
-    if (user.password === passwordHash) {
-      return { user, flag: true };
-    }
+    const createUserResponse = await db
+      .query(
+        `INSERT INTO "user" (fname, lname, uname, email, password) VALUES ('${fname}', '${lname}', '${uname}', '${email}', '${passwordHash}') RETURNING *`
+      )
+      .catch((err) => {
+        if (err.constraint === 'user_email') {
+          const error = new Error('User whith the same email already exist');
+          error.status = 400;
+          throw error;
+        }
+        throw new Error(err.message);
+      });
 
-    return { flag: false, message: 'Incorrect password' };
+    return new User(createUserResponse.rows[0]);
+  }
+
+  static async userList() {
+    const userListResponse = await db.query('SELECT * FROM "user"');
+
+    const users = userListResponse.rows.map((userDb) => new User(userDb));
+
+    return users;
+  }
+
+  static async updateUserPhoto(photoUrl, email) {
+    await db.query(
+      `UPDATE "user" SET photo = '${photoUrl}' WHERE email = '${email}'`
+    );
   }
 }
 

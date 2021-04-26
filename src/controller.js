@@ -30,7 +30,7 @@ async function createUser(ctx) {
   // );
 
   const user = { ...createUserResponse.rows[0] };
-  console.log(await ctx.redis.get('fname'));
+  //   console.log(await ctx.redis.get('fname'));
   // await ctx.redis.set(user.id, JSON.stringify(user));
   // await db.set(user.id, JSON.stringify(user));
 

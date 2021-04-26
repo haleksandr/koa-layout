@@ -6,19 +6,33 @@
 
 class User {
   constructor(user) {
-    this.id = user.id;
+    this._id = user.id;
+    this._password = user.password;
+
     this.fname = user.fname;
     this.lname = user.lname;
     this.uname = user.uname;
     this.email = user.email;
-    this.password = user.password;
   }
 
-  get getInfo() {
-    return this.fname;
+  getInfo(idFlag = false) {
+    const responseData = {
+      fname: this.fname,
+      lname: this.lname,
+      uname: this.uname,
+      email: this.email,
+    };
+
+    if (idFlag) {
+      responseData.id = this._id;
+    }
+
+    return responseData;
+  }
+
+  getId() {
+    return this._id;
   }
 }
 
-module.exports = {
-  User,
-};
+module.exports = { User };
