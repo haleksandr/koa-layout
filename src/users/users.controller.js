@@ -1,10 +1,8 @@
 const passport = require('koa-passport');
 const jwt = require('jwt-simple');
 
-const UserDB = require('./models/UserDB');
-// const AWSS3 = require('../utils/uploadS3'); // !!!
-// const validator = require('../validator');
-// const db = require('../db/db');
+const { UserDB } = require('./models/UserDB');
+const AWSS3 = require('../utils/uploadS3');
 
 class UsersController {
   static async signIn(ctx, next) {
@@ -75,16 +73,43 @@ class UsersController {
     };
   }
 
-  // static async updatePhoto(ctx) {
-  //   const photoUrl = await AWSS3.uploadS3(
-  //     ctx.request.body.photo,
-  //     'users',
-  //     `photos_${ctx.state.user.email}`
-  //   );
+  static async deleteUser(ctx) {
+    const { userId } = ctx.request.params;
 
-  //   await UserDB.updateUserPhoto(photoUrl, ctx.state.user.email);
-  //   ctx.body = { photoUrl };
-  // }
+    // ctx.body = (
+    //   await UserDB.createUser(fname, lname, uname, email, password)
+    // ).getInfo();
+
+    ctx.status = 204;
+    ctx.body = await UserDB.deleteUser(userId);
+  }
+
+  static async updateAccountInformation(ctx) {
+    const { uname, email } = ctx.request.body;
+    const { userId } = ctx.request.params;
+
+    ctx.status = 202;
+    ctx.body = await UserDB.updateAccountInformation(uname, email, userId);
+  }
+
+  static async updatePersonalInformation(ctx) {
+    const { fname, lname, gender, countrycode, country, company } = ctx.request.body;
+    const { userId } = ctx.request.params;
+
+    ctx.status = 202;
+    ctx.body = await UserDB.updatePersonalInformation(fname, lname, gender, countrycode, country, company, userId)
+  }
+
+  static async updatePhoto(ctx) {
+    const photoUrl = await AWSS3.uploadS3(
+      ctx.request.body.photo,
+      'users',
+      `photos_${ctx.state.user.email}`
+    );
+
+    await UserDB.updateUserPhoto(photoUrl, ctx.state.user.email);
+    ctx.body = { photoUrl };
+  }
 }
 
 module.exports = { UsersController };

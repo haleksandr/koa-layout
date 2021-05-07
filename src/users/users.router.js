@@ -21,11 +21,15 @@ router.get(
   UsersController.userList
 );
 router.get('users', UsersController.userList);
-// router.put(
-//   '/photo',
-//   passport.authenticate('jwt', { session: false }),
-//   UsersController.updatePhoto
-// );
+router.delete('delete-user/:userId', UsersController.deleteUser);
+router.put('update-personal-information/:userId', UsersController.updatePersonalInformation); // change personal information
+router.put('update-account-information/:userId', UsersController.updateAccountInformation); // change account information
+
+router.put(
+  '/photo',
+  passport.authenticate('jwt', { session: false }),
+  UsersController.updatePhoto
+);
 
 // router.get('get-user/:userId', controllers.getUser); // get one user
 // router.get('get-users', userControllers.getUsers); // get all users

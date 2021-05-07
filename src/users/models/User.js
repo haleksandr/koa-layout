@@ -13,10 +13,12 @@ class User {
     this.lname = user.lname;
     this.uname = user.uname;
     this.email = user.email;
+    this.photo = user.photo;
   }
 
   getInfo(idFlag = false) {
     const responseData = {
+      id: this._id,
       fname: this.fname,
       lname: this.lname,
       uname: this.uname,

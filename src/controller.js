@@ -8,8 +8,10 @@ const validator = require('./validator');
 const { UserDB } = require('./models/user/UserDB');
 
 async function profile(ctx) {
+  const { user } = ctx.state;
+
   ctx.body = {
-    success: true,
+    user,
   };
 }
 

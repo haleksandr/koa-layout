@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
+const { User } = require('./User');
 const db = require('../../db/db');
-const User = require('./User');
 
 class UserDB {
   static async getUserById(id) {
@@ -92,6 +92,31 @@ class UserDB {
     const users = userListResponse.rows.map((userDb) => new User(userDb));
 
     return users;
+  }
+
+  static async deleteUser(userId) {
+    const userDeleteResponse = await db.query(
+      `DELETE FROM "user" WHERE id = ${userId} RETURNING *`
+    );
+
+    // const user = { ...deleteUserResponse.rows[0] };
+    return new User(userDeleteResponse.rows[0]);
+  }
+
+  static async updateAccountInformation(uname, email, userId) {
+    const userUpdateAccountInformation = await db.query(
+      `UPDATE "user" SET uname = '${uname}', email = '${email}' WHERE id = '${userId}' RETURNING *`
+    );
+
+    return new User(userUpdateAccountInformation.rows);
+  }
+
+  static async updatePersonalInformation(fname, lname, gender, countrycode, country, company, userId) {
+    const userUpdatePersonalInformation = await db.query(
+      `UPDATE "user" SET fname = '${fname}', lname = '${lname}', gender = '${gender}', countrycode = '${countrycode}', country = '${country}', company = '${company}' WHERE id = '${userId}'`
+    );
+
+    return new User(userUpdatePersonalInformation.rows);
   }
 
   static async updateUserPhoto(photoUrl, email) {

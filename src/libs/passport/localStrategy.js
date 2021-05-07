@@ -13,7 +13,7 @@ const opts = {
 module.exports = new LocalStrategy(opts, async (req, email, password, done) => {
   UserDB.checkPassword(email, password)
     .then((checkPasswordResponse) => {
-      console.log(checkPasswordResponse);
+      // console.log(checkPasswordResponse);
       if (!checkPasswordResponse.flag) {
         return done({ message: checkPasswordResponse.message }, false);
       }
@@ -23,12 +23,12 @@ module.exports = new LocalStrategy(opts, async (req, email, password, done) => {
       const accessTokenPayload = {
         // id: user.getId(),
         id: user.id,
-        expiresIn: new Date().setTime(new Date().getTime() + 200000),
+        expiresIn: new Date().setTime(new Date().getTime() + 20000000),
       };
 
       const refreshTokenPayload = {
         email: user.email,
-        expiresIn: new Date().setTime(new Date().getTime() + 100000),
+        expiresIn: new Date().setTime(new Date().getTime() + 20000000),
       };
 
       const accessToken = jwt.encode(accessTokenPayload, 'super_secret');

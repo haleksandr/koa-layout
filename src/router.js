@@ -24,7 +24,7 @@ router.get('admin-manage-fixers', controllers.adminmanagefixers);
 
 // CRUD
 router.post('create-user', controllers.createUser); // create new user
-router.post('sign-in', controllers.signIn); // AZAZAZAZA
+router.post('sign-in', controllers.signIn); // sign in :)
 router.get('refresh/token', controllers.refresh); // refresh token
 router.get('get-user/:userId', controllers.getUser); // get one user
 router.get(

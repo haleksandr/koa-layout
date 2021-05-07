@@ -9,8 +9,8 @@ const nunjucks = require('nunjucks');
 // const Redis = require('ioredis');
 const cors = require('@koa/cors');
 
-const globalRouter = require('./src/router');
-// const globalRouter = require('./src/users/users.router.js');
+// const globalRouter = require('./src/router');
+const userRouter = require('./src/users/users.router.js');
 const passport = require('./src/libs/passport/koaPassport');
 const errorCatcher = require('./src/middleware/errorCatcher');
 
@@ -63,8 +63,8 @@ const render = views(path.join(__dirname, '/src/templates'), {
 app.use(render);
 app.use(serve(path.join(__dirname, './src/public')));
 
-router.use('/', globalRouter.router.routes());
-// router.use('/users', require('./src/users/users.router'));
+// router.use('/', globalRouter.router.routes());
+router.use('/', userRouter.router.routes());
 
 // app.use(router.routes());
 app.use(router.middleware());
