@@ -2,7 +2,7 @@ const passport = require('koa-passport');
 const jwt = require('jwt-simple');
 
 const { UserDB } = require('./models/UserDB');
-const AWSS3 = require('../utils/uploadS3');
+// const AWSS3 = require('../utils/uploadS3');
 
 class UsersController {
   static async signIn(ctx, next) {

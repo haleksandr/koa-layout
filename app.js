@@ -8,6 +8,7 @@ const nunjucks = require('nunjucks');
 // const Joi = require('joi');
 // const Redis = require('ioredis');
 const cors = require('@koa/cors');
+const config = require('config');
 
 // const globalRouter = require('./src/router');
 const userRouter = require('./src/users/users.router.js');

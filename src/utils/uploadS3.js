@@ -1,6 +1,5 @@
-const { fromBuffer } = require('file-type');
 const config = require('config');
-
+const { fromBuffer } = require('file-type');
 const AWS = require('../libs/aws');
 
 class AWSS3 {
