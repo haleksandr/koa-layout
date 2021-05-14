@@ -25,7 +25,7 @@ app.use(cors());
 // console.log(redis.get('fname'));
 // app.context.redis = redis;
 
-app.use(bodyParser());
+app.use(bodyParser({jsonLimit: '10mb'}));
 app.use(errorCatcher);
 
 // app.use(async (ctx, next) => {
@@ -45,6 +45,7 @@ app.use(errorCatcher);
 // });
 
 const router = new Router();
+// const hostname = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
 
 const nunjucksEnvironment = new nunjucks.Environment(

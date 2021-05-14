@@ -111,9 +111,9 @@ class UserDB {
     return new User(userUpdateAccountInformation.rows);
   }
 
-  static async updatePersonalInformation(fname, lname, gender, countrycode, country, company, userId) {
+  static async updatePersonalInformation(fname, lname, gender, countrycode, phonenumber, country, company, userId) {
     const userUpdatePersonalInformation = await db.query(
-      `UPDATE "user" SET fname = '${fname}', lname = '${lname}', gender = '${gender}', countrycode = '${countrycode}', country = '${country}', company = '${company}' WHERE id = '${userId}'`
+      `UPDATE "user" SET fname = '${fname}', lname = '${lname}', gender = '${gender}', countrycode = '${countrycode}', phonenumber = '${phonenumber}', country = '${country}', company = '${company}' WHERE id = '${userId}'`
     );
 
     return new User(userUpdatePersonalInformation.rows);

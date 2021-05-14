@@ -14,6 +14,7 @@ class User {
     this.uname = user.uname;
     this.email = user.email;
     this.photo = user.photo;
+    this.country = user.country;
   }
 
   getInfo(idFlag = false) {
@@ -23,6 +24,8 @@ class User {
       lname: this.lname,
       uname: this.uname,
       email: this.email,
+      photo: this.photo,
+      country: this.country,
     };
 
     if (idFlag) {

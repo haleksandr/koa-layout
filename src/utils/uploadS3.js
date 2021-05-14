@@ -1,4 +1,4 @@
-const config = require('config');
+// const config = require('config');
 const { fromBuffer } = require('file-type');
 const AWS = require('../libs/aws');
 
@@ -16,7 +16,7 @@ class AWSS3 {
 
     if (subfolder) {
       const params = {
-        Bucket: config.get('aws.bucketName'),
+        Bucket: process.env.AWS_BUCKET_NAME,
         Prefix: `${folder}/${subfolder}`,
       };
 
@@ -24,7 +24,7 @@ class AWSS3 {
         const listedObjects = data.Contents;
 
         const deleteParams = {
-          Bucket: config.get('aws.bucketName'),
+          Bucket: process.env.AWS_BUCKET_NAME,
           Delete: { Objects: [] },
         };
 
@@ -41,7 +41,7 @@ class AWSS3 {
     return new Promise((resolve, reject) => {
       this.s3.upload(
         {
-          Bucket: config.get('aws.bucketName'),
+          Bucket: process.env.AWS_BUCKET_NAME,
           Key: filename,
           Prefix: `${folder}/${subfolder}`,
           Body: base64Data,

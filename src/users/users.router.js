@@ -26,7 +26,7 @@ router.put('update-personal-information/:userId', UsersController.updatePersonal
 router.put('update-account-information/:userId', UsersController.updateAccountInformation); // change account information
 
 router.put(
-  '/photo',
+  'photo',
   passport.authenticate('jwt', { session: false }),
   UsersController.updatePhoto
 );
